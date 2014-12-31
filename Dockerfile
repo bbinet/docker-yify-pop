@@ -18,6 +18,10 @@ RUN npm install
 RUN npm install moment getport adm-zip opensrt_js child geddy
 RUN apt-get purge -yq git python build-essential && apt-get autoremove -yq \
   && apt-get clean all
+
+ADD production.js /yify-pop/config/
+
 EXPOSE 4000 8889
 
-CMD node yifystart.js
+#CMD node yifystart.js
+CMD ["/usr/bin/geddy", "-e", "production"]
